@@ -1,0 +1,21 @@
+{% extends "inventory/base.html" %}
+ 
+{% load static %}
+
+{% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="{% static 'inventory_tracker/style.css' %}">
+{% endblock %}
+
+{% block content%}
+<h2>---{{ object.menuItemName }}---</h2>
+<p>---{{ object.menuItemDescription }}---</p>
+<p>---{{ object.menuItemPrice }}---</p>
+<a href = "{% url 'menu' %}">Return to Menu</a>
+<a href = "{% url 'menu-edit' object.pk %}">Edit</a>
+<a href = "{% url 'menu-delete' object.pk %}">Delete</a>
+
+
+{% endblock %}

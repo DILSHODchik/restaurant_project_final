@@ -1,0 +1,17 @@
+<table id="menu-table">
+    <tr class="table-heading">
+        <th>|-----Name------|   </th>
+        <th>|-----Quantity-----|  </th>
+        <th>|-----Price-----|   </th>
+        <th> </th>
+    </tr>
+    {% for ingredient in object_list %}
+    <tr>
+        <td>{{ ingredient.itemName }}</td>
+        <td>{{ ingredient.quantity }}</td>
+        <td>{{ ingredient.itemPrice }} $</td>
+        <td><a href="{% url 'ingredient-edit' ingredient.pk %}">[Edit]</a></td>
+        <td><a href="{% url 'ingredient-delete' ingredient.pk %}">[Delete]</a></td>
+    </tr>
+    {% endfor %}
+</table>

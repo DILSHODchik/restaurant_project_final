@@ -1,0 +1,37 @@
+{% extends "inventory_tracker/base.html" %}
+ 
+{% load static %}
+
+{% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="{% static 'inventory_tracker/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class = "container body-container">
+    <h2>Recipe for {{ object.menuItemName }}</h2>
+    {% if recipe_req_list %}
+    <table>
+        <tr class = "table-heading">
+            <th>Ingredient</th>
+            <th>Quantity</th>
+            <th> </th>
+            <th> </th>
+        </tr>
+        {% for req in recipe_ingredient_query %}
+        <tr>
+            <td>{{ req.ingredient }}</td>
+            <td>{{ req.ingredientQuantity }}</td>
+            <a href = "{% url 'recipe-edit' req.pk %}">Edit</a>
+            <a href = "{% url 'recipe-delete' req.pk %}">Delete</a>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p> Dude, I think no recipe available for this menu item. </p>
+    {% endif %}
+    <a href = "{% url 'recipe-create' %}">Add Recipe Requirement</a>
+</div>
+{% endblock %}

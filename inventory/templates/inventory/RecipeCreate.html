@@ -1,0 +1,33 @@
+{% extends "inventory/base.html" %}
+
+
+{% load static %}
+
+{% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="{% static 'inventory_tracker/style.css' %}">
+{% endblock %}
+
+{% block content%}
+<div class = "container body-container">
+    <h2>Add new Recipe</h2>
+    <form method = "POST">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        {% for form in formset %}
+        <div class = "link-formset">
+            {{ form.as_p }}
+        </div>
+        {% endfor %}
+        <input type = "submit" value = "Submit">
+    </form>
+</div>
+<script>
+    $('.link-formset').formset({
+        addText: 'Add Ingredient',
+        deleteText: 'Remove Ingredient'
+    });
+    </script>
+{% endblock %}
